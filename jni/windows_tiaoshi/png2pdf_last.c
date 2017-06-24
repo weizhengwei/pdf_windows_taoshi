@@ -965,7 +965,7 @@ void drawcurveV(HPDF_Doc pdf, HPDF_Page page, float* arr, int len, int index)
 	HPDF_Page_SetGrayStroke (page, 0);
 	HPDF_Page_SetRGBFill (page, 0, 0, 0);
 	HPDF_Page_SetLineJoin(page, HPDF_ROUND_JOIN);
-	for(i = height-25, j = 0; i >= 25 && j < len-1; i-=gPrintInfo.speed, j++)
+	for(i = height-25, j = 0; i >= 10 && j < len-1; i-=gPrintInfo.speed, j++)
 	{
 		HPDF_Page_SetLineWidth (page, CURVE_WIDTH);
 	//	HPDF_Page_SetRGBStroke (page, 0.0, 1.0, 0.0);
@@ -1788,9 +1788,9 @@ void SetHeadInfo(char* sname, char* ssex, char* sspeed, char* shr, char* spvcs,	
 int main()
 {
 	
-	SetPrintInfo(1, 1, 1);
+	SetPrintInfo(0, 1, 1);
 
-	SetHeadInfo("欧阳锋子", "1", "25", "80", "0", "医生：王博士", "135164251636943648","20", "10", "10",
+	SetHeadInfo("欧阳锋子", "1", "25", "80", "0", "医生：王博士", "135164251636943648","10", "10", "10",
 		"2017-10-10 10:10:10", "msg msgsmg", 1);
 	float arr[COUNT] = {0};
 	for(int i=0;i<COUNT;i++){
