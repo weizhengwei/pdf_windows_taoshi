@@ -528,7 +528,18 @@ void print_flag4x3_1(HPDF_Doc pdf, HPDF_Page page, HPDF_Font font)
         
     /* Draw horizontal lines */
     int flag_width = 10;
-    int flag_height = 28;//30
+    //int flag_height = 28;//30
+    HPDF_REAL flag_height = FLAG_HEIGHT;//28;//30
+    if(iGain == 0){
+    	flag_height = FLAG_HEIGHT/4;
+    }else if(iGain == 1){
+    	flag_height = FLAG_HEIGHT/2;
+    }else if(iGain == 2){
+    	flag_height = FLAG_HEIGHT;
+    }else if(iGain == 3){
+    	flag_height = FLAG_HEIGHT*2;
+    }
+    
 	int base = 0;
     int i;
 	base = 10;
@@ -579,7 +590,17 @@ void print_flag4x3_2(HPDF_Doc pdf, HPDF_Page page, HPDF_Font font)
         
     /* Draw horizontal lines */
     int flag_width = 10;
-    int flag_height = 28;//30
+   // int flag_height = 28;//30
+    HPDF_REAL flag_height = FLAG_HEIGHT;//28;//30
+    if(iGain == 0){
+    	flag_height = FLAG_HEIGHT/4;
+    }else if(iGain == 1){
+    	flag_height = FLAG_HEIGHT/2;
+    }else if(iGain == 2){
+    	flag_height = FLAG_HEIGHT;
+    }else if(iGain == 3){
+    	flag_height = FLAG_HEIGHT*2;
+    }
 	int base = 0;
     int i;
 	base = 10;
@@ -630,7 +651,17 @@ void print_flag4x3_3(HPDF_Doc pdf, HPDF_Page page, HPDF_Font font)
         
     /* Draw horizontal lines */
     int flag_width = 10;
-    int flag_height = 28;//30
+    //int flag_height = 28;//30
+    HPDF_REAL flag_height = FLAG_HEIGHT;//28;//30
+    if(iGain == 0){
+    	flag_height = FLAG_HEIGHT/4;
+    }else if(iGain == 1){
+    	flag_height = FLAG_HEIGHT/2;
+    }else if(iGain == 2){
+    	flag_height = FLAG_HEIGHT;
+    }else if(iGain == 3){
+    	flag_height = FLAG_HEIGHT*2;
+    }
 	int base = 0;
     int i;
 	base = 10;
@@ -1218,8 +1249,19 @@ void print_flag(HPDF_Doc pdf, HPDF_Page page, HPDF_Font font)
     rad1 = angle1 / 180 * 3.141592; /* Calcurate the radian value. */
         
     /* Draw horizontal lines */
-    int flag_width = 10;
-    int flag_height = FLAG_HEIGHT;//28;//30
+    int flag_width = 10;    
+    
+    HPDF_REAL flag_height = FLAG_HEIGHT;//28;//30
+    if(iGain == 0){
+    	flag_height = FLAG_HEIGHT/4;
+    }else if(iGain == 1){
+    	flag_height = FLAG_HEIGHT/2;
+    }else if(iGain == 2){
+    	flag_height = FLAG_HEIGHT;
+    }else if(iGain == 3){
+    	flag_height = FLAG_HEIGHT*2;
+    }
+    
 	int base = 0;
     int i;
 	base = 10;
@@ -1746,9 +1788,9 @@ void SetHeadInfo(char* sname, char* ssex, char* sspeed, char* shr, char* spvcs,	
 int main()
 {
 	
-	SetPrintInfo(0, 1, 1);
+	SetPrintInfo(1, 1, 1);
 
-	SetHeadInfo("欧阳锋子", "1", "25", "80", "10", "医生：王博士", "135164251636943648","10mm", "10", "10",
+	SetHeadInfo("欧阳锋子", "1", "25", "80", "0", "医生：王博士", "135164251636943648","20", "10", "10",
 		"2017-10-10 10:10:10", "msg msgsmg", 1);
 	float arr[COUNT] = {0};
 	for(int i=0;i<COUNT;i++){
