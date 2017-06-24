@@ -1,8 +1,8 @@
 
 
-cl /c png2pdf.c /D__WIN32__ /I".\include"
+cl /c png2pdf_last.c /D__WIN32__ /DTEST /I".\include"
 
-link png2pdf.obj pdflib.lib
+link png2pdf_last.obj pdflib.lib
 
-png2pdf.exe
+png2pdf_last.exe
 

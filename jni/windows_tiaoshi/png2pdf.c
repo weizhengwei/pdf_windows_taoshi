@@ -56,7 +56,7 @@ void write_bottom(HPDF_Page page, HPDF_Font font){
     
 	HPDF_Page_SetTextRenderingMode (page, HPDF_FILL);
     HPDF_Page_SetRGBFill (page, 0, 0, 0);
-    HPDF_Page_SetFontAndSize(page, font, 12);
+    HPDF_Page_SetFontAndSize(page, font, 7);
     /*
      * Rotating text
      */
@@ -102,7 +102,7 @@ void write_head(HPDF_Page page, HPDF_Font font, const char* name, const char* se
     
 	HPDF_Page_SetTextRenderingMode (page, HPDF_FILL);
     HPDF_Page_SetRGBFill (page, 0, 0, 0);
-    HPDF_Page_SetFontAndSize(page, font, 10);//12
+    HPDF_Page_SetFontAndSize(page, font, 7);//12
     /*
      * Rotating text
      */
@@ -360,7 +360,8 @@ void drawcurveV_column(HPDF_Doc pdf, HPDF_Page page, float* arr, int len, int in
 	}
 }
 
-const RIGHT_GAP = 25;
+const int RIGHT_GAP = 10;
+const int TOP_GAP = 10;
 
 void print_grid(HPDF_Doc pdf, HPDF_Page page)
 {
@@ -373,24 +374,24 @@ void print_grid(HPDF_Doc pdf, HPDF_Page page)
     //HPDF_Page_SetGrayStroke (page, 0.8);
 //HPDF_Page_SetGrayFill(page, 0); 
     /* Draw horizontal lines */
-	y = 20.0;
+	y = 10.0;
 	HPDF_REAL GridLineWidth = 0.5;
 	HPDF_REAL DashLineWidth = 0.2;
 
 	
-	while(y <= height-25){
+	while(y <= height-10){
 		HPDF_Page_SetLineWidth (page, GridLineWidth);
-		HPDF_Page_MoveTo (page, 30, y);
+		HPDF_Page_MoveTo (page, 10, y);
         HPDF_Page_LineTo (page, width-RIGHT_GAP, y);
         HPDF_Page_Stroke (page);
 		y += 14.3;//14.5;
 	}
 	//
 //	HPDF_Page_SetDash (page, DASH_MODE1, 1, 1);
-	y = 20;
-	while(y <= height-25){
+	y = 10;
+	while(y <= height-10){
 		HPDF_Page_SetLineWidth (page, DashLineWidth);
-		HPDF_Page_MoveTo (page, 30, y);
+		HPDF_Page_MoveTo (page, 10, y);
         HPDF_Page_LineTo (page, width-RIGHT_GAP, y);
         HPDF_Page_Stroke (page);
 		y += 2.86;//2.83;
@@ -398,32 +399,32 @@ void print_grid(HPDF_Doc pdf, HPDF_Page page)
 //	HPDF_Page_SetDash (page, NULL, 0, 0);
 	
 	//
-	x = 30.0;
+	x = 10.0;
 	while(x <= width-RIGHT_GAP){
 		HPDF_Page_SetLineWidth (page, GridLineWidth);
-		HPDF_Page_MoveTo (page, x, 20);
-        HPDF_Page_LineTo (page, x, height-26);
+		HPDF_Page_MoveTo (page, x, 10);
+        HPDF_Page_LineTo (page, x, height-10);
         HPDF_Page_Stroke (page);
 		x += 14.23;
 	}
 	//
 //	HPDF_Page_SetDash (page, DASH_MODE1, 1, 1);
-	x = 30;
+	x = 10;
 	while(x <= width-RIGHT_GAP){
 		HPDF_Page_SetLineWidth (page, DashLineWidth);
-		HPDF_Page_MoveTo (page, x, 20);
-        HPDF_Page_LineTo (page, x, height-26);
+		HPDF_Page_MoveTo (page, x, 10);
+        HPDF_Page_LineTo (page, x, height-10);
         HPDF_Page_Stroke (page);
 		x += 2.846;
 	}
 	//HPDF_Page_SetDash (page, NULL, 0, 0);
 	
-	//
-	HPDF_Page_SetGrayStroke (page, 0);
-	HPDF_Page_SetLineWidth (page, 2.0);
-	HPDF_Page_MoveTo (page, 28, 20);
-    HPDF_Page_LineTo (page, 28, height-26);
-    HPDF_Page_Stroke (page);
+	//botton line 5line
+	//HPDF_Page_SetGrayStroke (page, 0);
+	//HPDF_Page_SetLineWidth (page, 2.0);
+	//HPDF_Page_MoveTo (page, 28, 20);
+    //HPDF_Page_LineTo (page, 28, height-26);
+    //HPDF_Page_Stroke (page);
 
    // HPDF_Page_SetGrayFill (page, 0);
    //HPDF_Page_SetGrayStroke (page, 0);
@@ -436,6 +437,9 @@ void print_flag(HPDF_Doc pdf, HPDF_Page page, HPDF_Font font)
     HPDF_REAL width = HPDF_Page_GetWidth (page);
     char* colume1[] = {"aVF", "aVL", "aVR", "III", "II", "I"};
     char* colume2[] = {"V6", "V5", "V4", "V3", "V2", "V1"};
+    
+    char* colume_all[] = {"V6", "V5", "V4", "V3", "V2", "V1","aVF", "aVL", "aVR", "III", "II", "I"};
+    
     HPDF_UINT x, y;
 	float angle1;
     float angle2;
@@ -454,12 +458,14 @@ void print_flag(HPDF_Doc pdf, HPDF_Page page, HPDF_Font font)
         
     /* Draw horizontal lines */
     int flag_width = 10;
-    int flag_height = FLAG_HEIGHT/4;//28;//30
+    int flag_height = FLAG_HEIGHT;//28;//30
 	int base = 0;
     int i;
 	base = 10;
-    for(i = 0; i < 6; i++){
-    	float X = 110+62*i;
+    for(i = 0; i < 12; i++){
+    //	float X = 110+62*i;
+    if(i == 9){
+    	float X = 20+49*i;
     	HPDF_Page_SetLineWidth (page, 0.5);
 		HPDF_Page_MoveTo (page, X, height-10);
 	    HPDF_Page_LineTo (page, X, height-15);
@@ -470,48 +476,52 @@ void print_flag(HPDF_Doc pdf, HPDF_Page page, HPDF_Font font)
 	    HPDF_Page_LineTo (page, X, height-25);
 	    HPDF_Page_Stroke (page);
 	    
-	    HPDF_Page_BeginText (page);
+	    
+    }
+    HPDF_Page_BeginText (page);
 	    HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
 	                X+flag_height, height-10);
-	    HPDF_Page_ShowText (page, colume1[i]);
+	    HPDF_Page_ShowText (page, colume_all[i]);
 	    HPDF_Page_EndText (page);
     }    
-    base = -8;
-    for(i = 0; i < 6; i++){
-    	float X = 110+62*i;
-    	HPDF_Page_SetLineWidth (page, 0.5);
-		HPDF_Page_MoveTo (page, X, height/2-base);
-	    HPDF_Page_LineTo (page, X, height/2-(base+5));
-	    HPDF_Page_MoveTo (page, X, height/2-(base+5));
-	    HPDF_Page_LineTo (page, X+flag_height, height/2-(base+5));
-	    HPDF_Page_LineTo (page, X+flag_height, height/2-(base+10));
-	    HPDF_Page_LineTo (page, X, height/2-(base+10));
-	    HPDF_Page_LineTo (page, X, height/2-(base+15));
-	    HPDF_Page_Stroke (page);
-	    
-	    HPDF_Page_BeginText (page);
-	    HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-	                X+flag_height, height/2-base);
-	    HPDF_Page_ShowText (page, colume2[i]);
-	    HPDF_Page_EndText (page);
-    }
+    //base = -8;
+    //for(i = 0; i < 6; i++){
+    //	float X = 110+62*i;
+    //	HPDF_Page_SetLineWidth (page, 0.5);
+	//	HPDF_Page_MoveTo (page, X, height/2-base);
+	//    HPDF_Page_LineTo (page, X, height/2-(base+5));
+	//    HPDF_Page_MoveTo (page, X, height/2-(base+5));
+	//    HPDF_Page_LineTo (page, X+flag_height, height/2-(base+5));
+	//    HPDF_Page_LineTo (page, X+flag_height, height/2-(base+10));
+	//    HPDF_Page_LineTo (page, X, height/2-(base+10));
+	//    HPDF_Page_LineTo (page, X, height/2-(base+15));
+	//    HPDF_Page_Stroke (page);
+	//    
+	//    HPDF_Page_BeginText (page);
+	//    HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
+	//                X+flag_height, height/2-base);
+	//    HPDF_Page_ShowText (page, colume2[i]);
+	//    HPDF_Page_EndText (page);
+    //}
 	
-	float X = 45;
-	HPDF_Page_SetLineWidth (page, 0.5);
-	HPDF_Page_MoveTo (page, X, height-10);
-	HPDF_Page_LineTo (page, X, height-15);
-	HPDF_Page_MoveTo (page, X, height-15);
-	HPDF_Page_LineTo (page, X+flag_height, height-15);
-	HPDF_Page_LineTo (page, X+flag_height, height-20);
-	HPDF_Page_LineTo (page, X, height-20);
-	HPDF_Page_LineTo (page, X, height-25);
-	HPDF_Page_Stroke (page);
+	//float X = 45;
+	//HPDF_Page_SetLineWidth (page, 0.5);
+	//HPDF_Page_MoveTo (page, X, height-10);
+	//HPDF_Page_LineTo (page, X, height-15);
+	//HPDF_Page_MoveTo (page, X, height-15);
+	//HPDF_Page_LineTo (page, X+flag_height, height-15);
+	//HPDF_Page_LineTo (page, X+flag_height, height-20);
+	//HPDF_Page_LineTo (page, X, height-20);
+	//HPDF_Page_LineTo (page, X, height-25);
+	//HPDF_Page_Stroke (page);
 	
-	HPDF_Page_BeginText (page);
-	HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-				X+flag_height, height-10);
-	HPDF_Page_ShowText (page, "II");
-	HPDF_Page_EndText (page);
+	//HPDF_Page_BeginText (page);
+	//HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
+	//			X+flag_height, height-10);
+	//HPDF_Page_ShowText (page, "II");
+	//HPDF_Page_EndText (page);
+	
+	
    // HPDF_Page_SetGrayFill (page, 0);
    // HPDF_Page_SetGrayStroke (page, 0);
 }
@@ -581,7 +591,7 @@ int ecg2pdf(const char* filename, float* arrecgI, int len, float* arrecgII, floa
 	//drawcurveV_column(pdf, page, arrecgV5, len, 3);
 	//drawcurveV_column(pdf, page, arrecgV6, len, 1);
 	//
-	write_bottom(page, font);
+	//write_bottom(page, font);
 	
 	write_head(page, font, "姓名：欧阳锋子", "性别：男", "波速：25mm/s", "HR：80bmp", "PVCs:10", "医生：王博士", "身份证号：135164251636943648", "增益：10毫米/毫伏", "ST1：0mv", "ST2:10mv","检测时间：2016-01-17 14:01", "滤波模式：诊断");
 	//write_head(page, font, gHI.HIname, gHI.HIsex, gHI.HIspeed, gHI.HIhr, gHI.HIpvcs, gHI.HIdoctor, gHI.HIid, gHI.HIgain, gHI.HIst1, gHI.HIst2, gHI.HItime);
