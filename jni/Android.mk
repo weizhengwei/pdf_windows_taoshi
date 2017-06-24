@@ -11,7 +11,7 @@ LOCAL_MODULE := png2pdf
 LOCAL_SRC_FILES := png2pdf_last.c
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
-#LOCAL_CFLAGS := -DTEST
+#LOCAL_CFLAGS := -DTEST -DANDROID
 LOCAL_LDFLAGS := -L. -llog
 #LOCAL_WHOLE_STATIC_LIBRARIES += android_support
 #LOCAL_CPPFLAGS := -frtti -std=c++11
