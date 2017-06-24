@@ -8,7 +8,7 @@ include $(PREBUILT_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := png2pdf
-LOCAL_SRC_FILES := png2pdf.c
+LOCAL_SRC_FILES := png2pdf_last.c
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
 #LOCAL_CFLAGS := -DTEST
