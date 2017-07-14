@@ -131,6 +131,7 @@ void write_head0(HPDF_Page page, HPDF_Font font, const char* name, const char* s
     angle1 = -90;                   /* A rotation of 30 degrees. */
     rad1 = angle1 / 180 * 3.141592; /* Calcurate the radian value. */
     
+    
     //name
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
@@ -258,6 +259,7 @@ void write_head(HPDF_Page page, HPDF_Font font, const char* name, const char* se
     int BASE1 = 130;
     int ONE_COLUMN = 300;
     int TWO_COLUMN = 220;
+    int NEW_RIGHT_GAP = 20;
     HPDF_REAL height = HPDF_Page_GetHeight (page);
     HPDF_REAL width = HPDF_Page_GetWidth (page);
     printf("height = %f, width = %f\n", height, width);
@@ -275,51 +277,51 @@ void write_head(HPDF_Page page, HPDF_Font font, const char* name, const char* se
     //name
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP1, ONE_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-20);
     HPDF_Page_ShowText (page, name);
     HPDF_Page_EndText (page);
     //sex
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP1, TWO_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-75);
     HPDF_Page_ShowText (page, sex);
     HPDF_Page_EndText (page);
      ////id
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP2, ONE_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-115);
     HPDF_Page_ShowText (page, id);
     HPDF_Page_EndText (page);
     
     //speed
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP3, ONE_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-220);
     HPDF_Page_ShowText (page, speed);
     HPDF_Page_EndText (page);
     
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP3, TWO_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-270);
     HPDF_Page_ShowText (page, gain);
     HPDF_Page_EndText (page);
     
     ////hr
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP4, ONE_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-320);
     HPDF_Page_ShowText (page, hr);
     HPDF_Page_EndText (page);
     ////pvcs
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP4, TWO_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-350);
     HPDF_Page_ShowText (page, pvcs);
     HPDF_Page_EndText (page);
     
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix(page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-    	width-GAP5, ONE_COLUMN-BASE1);
+    	width-NEW_RIGHT_GAP, height-380);
     if(gPrintInfo.gongpin == 1){
    		HPDF_Page_ShowText (page, "¹¤Æµ:¿ª");
    	}else{
@@ -329,38 +331,38 @@ void write_head(HPDF_Page page, HPDF_Font font, const char* name, const char* se
    	
    	HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP5, TWO_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-420);
     HPDF_Page_ShowText (page, ecgmode);
     HPDF_Page_EndText(page);
     
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP6, ONE_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-480);
     HPDF_Page_ShowText (page, time);
     HPDF_Page_EndText (page);
    	
    	HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP7, ONE_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-600);
     HPDF_Page_ShowText (page, g_analysismsg);
     HPDF_Page_EndText (page);
     
     //st1
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP8, ONE_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-680);
     HPDF_Page_ShowText (page, st1);
     HPDF_Page_EndText (page);
     //st2
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP8, TWO_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-720);
     HPDF_Page_ShowText (page, st2);
     HPDF_Page_EndText (page);
    
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextMatrix (page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1),
-                width-GAP9, ONE_COLUMN-BASE1);
+                width-NEW_RIGHT_GAP, height-760);
     HPDF_Page_ShowText (page, doctor);
     HPDF_Page_EndText (page);
 }
